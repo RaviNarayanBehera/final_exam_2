@@ -21,13 +21,14 @@ class HomeScreen extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFa13efd),
         title: const Text('Home'),
         actions: [
           IconButton(
             onPressed: () async {
               await providerFalse.syncCloudToLocal();
             },
-            icon: const Icon(Icons.repeat)
+            icon: const Icon(Icons.repeat,color: Colors.black,)
           ),
           IconButton(
             onPressed: () {
@@ -101,92 +102,95 @@ class HomeScreen extends StatelessWidget {
                 return Expanded(
                   child: ListView.builder(
                     itemCount: notesModal.length,
-                    itemBuilder: (context, index) => ListTile(
-                      onTap: () {
-                        providerTrue.id = notesModal[index].id;
-                        providerTrue.txtTitle.text = notesModal[index].title;
-                        providerTrue.txtCategory.text =
-                            notesModal[index].category;
-                        providerTrue.txtAmount.text = notesModal[index].amount;
+                    itemBuilder: (context, index) => Card(
+                      color: Color(0xFF7247f9),
+                      child: ListTile(
+                        onTap: () {
+                          providerTrue.id = notesModal[index].id;
+                          providerTrue.txtTitle.text = notesModal[index].title;
+                          providerTrue.txtCategory.text =
+                              notesModal[index].category;
+                          providerTrue.txtAmount.text = notesModal[index].amount;
 
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text('Update Expense'),
-                            actions: [
-                              MyTextField(
-                                controller: providerTrue.txtTitle,
-                                label: 'Title',
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              MyTextField(
-                                controller: providerTrue.txtCategory,
-                                label: 'Category',
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              MyTextField(
-                                controller: providerTrue.txtAmount,
-                                label: 'Amount',
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      providerTrue.date =
-                                      '${DateTime.now().hour}:${DateTime.now().minute}';
-                                      providerFalse.updateNoteInDatabase(
-                                        id: notesModal[index].id,
-                                        title: providerTrue.txtTitle.text,
-                                        date: providerTrue.date,
-                                        amount: double.parse(
-                                            providerTrue.txtAmount.text),
-                                        category: providerTrue.txtCategory.text,
-                                      );
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                      leading: Text(notesModal[index].id.toString()),
-                      title: Text(notesModal[index].title),
-                      subtitle: Text(notesModal[index].category),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(notesModal[index].amount),
-                          const VerticalDivider(),
-                          Text(notesModal[index].date),
-                          const VerticalDivider(),
-                          IconButton(
-                            onPressed: () async {
-                              await providerFalse.deleteNoteInDatabase(
-                                  id: notesModal[index].id);
-                            },
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.red,
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text('Update Expense'),
+                              actions: [
+                                MyTextField(
+                                  controller: providerTrue.txtTitle,
+                                  label: 'Title',
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                MyTextField(
+                                  controller: providerTrue.txtCategory,
+                                  label: 'Category',
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                MyTextField(
+                                  controller: providerTrue.txtAmount,
+                                  label: 'Amount',
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        providerTrue.date =
+                                        '${DateTime.now().hour}:${DateTime.now().minute}';
+                                        providerFalse.updateNoteInDatabase(
+                                          id: notesModal[index].id,
+                                          title: providerTrue.txtTitle.text,
+                                          date: providerTrue.date,
+                                          amount: double.parse(
+                                              providerTrue.txtAmount.text),
+                                          category: providerTrue.txtCategory.text,
+                                        );
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
+                          );
+                        },
+                        leading: Text(notesModal[index].id.toString(),style: TextStyle(color: Colors.black),),
+                        title: Text(notesModal[index].title,style: TextStyle(color: Colors.black),),
+                        subtitle: Text(notesModal[index].category,style: TextStyle(color: Colors.black),),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(notesModal[index].amount,style: TextStyle(color: Colors.black),),
+                            const VerticalDivider(),
+                            Text(notesModal[index].date,style: TextStyle(color: Colors.black),),
+                            const VerticalDivider(),
+                            IconButton(
+                              onPressed: () async {
+                                await providerFalse.deleteNoteInDatabase(
+                                    id: notesModal[index].id);
+                              },
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -207,6 +211,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xFF7247f9),
         onPressed: () {
           showDialog(
             context: context,
