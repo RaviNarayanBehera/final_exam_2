@@ -1,3 +1,18 @@
+# Personal Finance Tracker App
+<h4>    
+• Expense Management: Handles add, update, delete, and search operations for expenses.</br>
+• Local Storage (SQLite): Stores expenses locally and syncs them with Firebase for consistency.</br>
+• Firebase Sync: Syncs data between local storage and Firebase Firestore, ensuring cloud backup and real-time updates.</br>
+• Category Search: Provides search functionality to filter expenses by categories.</br>
+• Backup to Firebase: Backs up local expenses to Firebase Firestore to prevent data loss and ensure redundancy.</br>
+</h4>
+
+
+#
+<h3>Images</h3>
+
+#
+
 <h1 align = "center">
   <img src="https://github.com/user-attachments/assets/25fcf04d-aa33-43df-9c63-103a353e628b" height=65%  width=22%>
   <img src="https://github.com/user-attachments/assets/d3b49cd7-d4dc-4e17-b600-8a89e876a2e8" height=65%  width=22%>
